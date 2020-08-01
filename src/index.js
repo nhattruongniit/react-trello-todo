@@ -4,10 +4,14 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
+// reducers
 import rootReducers from 'rootReducers';
 
-import './index.css';
 import App from './App';
+
+// styles
+import 'antd/dist/antd.css';
+import './index.css';
 
 // config redux
 const composeEnhancers =

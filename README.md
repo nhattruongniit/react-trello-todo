@@ -1,4 +1,4 @@
-# REACT TRELLO
+# REACT TRELLO TODO
 
 ## STACK
 
@@ -8,6 +8,10 @@
 - react-beautiful-dnd
 - redux
 - redux-thunk
+
+### UI COMPONENT
+
+- ant design
 
 ### TOOLS
 
