@@ -1,18 +1,15 @@
 import React from 'react';
-import { Layout } from 'antd';
 
 import LayoutHeader from './LayoutHeader';
 
-const { Header, Content } = Layout;
-
 function LayoutMain({ children }) {
   return (
-    <Layout>
-      <Header className="header__container">
+    <div>
+      <header>
         <LayoutHeader />
-      </Header>
-      <Content>{children}</Content>
-    </Layout>
+      </header>
+      <main>{children}</main>
+    </div>
   );
 }
 

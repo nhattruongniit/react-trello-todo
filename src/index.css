@@ -22,6 +22,7 @@ code {
   background-color: #026aa7;
   box-sizing: border-box;
   display: flex;
+  min-height: 40px;
   max-height: 40px;
   padding: 4px;
   display: flex;
@@ -43,4 +44,11 @@ code {
   display: flex;
   justify-content: flex-end;
   flex-grow: 1;
+}
+
+.header__avatar {
+  vertical-align: middle;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
 }

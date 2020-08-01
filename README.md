@@ -11,7 +11,7 @@
 
 ### UI COMPONENT
 
-- ant design
+- reactstrap
 
 ### TOOLS
 

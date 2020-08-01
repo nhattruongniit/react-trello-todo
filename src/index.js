@@ -10,7 +10,7 @@ import rootReducers from 'rootReducers';
 import App from './App';
 
 // styles
-import 'antd/dist/antd.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
 // config redux

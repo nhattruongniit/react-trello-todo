@@ -1,16 +1,17 @@
 import React from 'react';
 
-// antd
-import { Avatar } from 'antd';
-
 function LayoutHeader() {
   return (
-    <>
+    <div className="header__container">
       <div className="header__logo" />
       <div className="header__right">
-        <Avatar src="./assets/images/avatar.png" />
+        <img
+          className="header__avatar"
+          src="./assets/images/avatar.png"
+          alt="Avatar"
+        />
       </div>
-    </>
+    </div>
   );
 }
 
