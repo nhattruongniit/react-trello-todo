@@ -60,22 +60,30 @@ const initialState = {
     'card-1-1': {
       id: 'card-1-1',
       list: 'list-1',
-      title: 'learn javascriptlearn javascriptlearn javascriptlearn javascriptlearn javascriptlearn javascriptlearn javascriptlearn javascript',
+      title: 'learn javascriptlearn ',
+      member: [
+        './assets/images/avatar.png',
+        './assets/images/avatar2.jpeg',
+        './assets/images/avatar3.jpg'
+      ]
     },
     'card-1-2': {
       id: 'card-1-2',
       list: 'list-1',
       title: 'learn react',
+      member: []
     },
     'card-2-1': {
       id: 'card-2-1',
       list: 'list-2',
       title: 'learn javascript',
+      member: []
     },
     'card-2-2': {
       id: 'card-2-2',
       list: 'list-2',
       title: 'learn graphQL',
+      member: []
     },
   },
   columns: ['list-1', 'list-2'],
@@ -186,8 +194,6 @@ const reducers = (state = initialState, { type, payload }) => {
 
     case DRAG_END_CARD: {
       const { destination, source } = payload;
-      console.log(payload);
-
       if (destination === null) return state;
 
       // in the same list

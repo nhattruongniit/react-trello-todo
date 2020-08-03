@@ -29,3 +29,8 @@ $ npm start
 # build for production // use environment variable in .env.production
 $ npm run build
 ```
+
+
+## Screenshot
+
+![alt text](public/assets/images/todoVideo.gif)

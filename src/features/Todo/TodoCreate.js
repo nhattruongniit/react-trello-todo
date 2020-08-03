@@ -56,8 +56,9 @@ const TodoCreate = ({ isLists, listId }) => {
     const id = `card-${uuidv4()}`;
     const newCards = {
       id,
+      title,
       list: listId,
-      title
+      member: []
     };
     dispatch(addCard(listId, newCards));
     setTitle('');

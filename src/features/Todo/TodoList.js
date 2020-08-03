@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { useDispatch } from 'react-redux';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 
 // carbon core
 import TextInput from 'carbon-components-react/lib/components/TextInput';
@@ -30,7 +30,7 @@ function TodoList({ title, cards, listId, index }) {
     setIsEditing(false);
   };
 
-  const handleDelete = () => {
+  const handleRemove = () => {
     dispatch(removeList(listId));
   };
 
@@ -68,7 +68,7 @@ function TodoList({ title, cards, listId, index }) {
                       >
                         <div>{title}</div>
                       </div>
-                      <ButtonIcon icon={TrashCan32} onClick={handleDelete} />
+                      <ButtonIcon icon={TrashCan32} onClick={handleRemove} />
                     </div>
                   )}
                 </div>
@@ -85,6 +85,7 @@ function TodoList({ title, cards, listId, index }) {
                         title={card.title}
                         index={idx}
                         listId={listId}
+                        member={card.member}
                       />
                     );
                   })}

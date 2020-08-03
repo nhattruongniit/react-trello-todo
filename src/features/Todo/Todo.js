@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
@@ -18,7 +18,7 @@ function Todo() {
   const listsSelector = useSelector(getLists);
   const cardsSelector = useSelector(getCards);
 
-  const onDragEnd = useCallback((result) => {
+  const onDragEnd = (result) => {
     const { type } = result;
 
     if (type === 'LIST') {
@@ -30,7 +30,7 @@ function Todo() {
       dispatch(onDragEndCard(result));
       return false;
     }
-  }, []);
+  };
 
   return (
     <div className="todo">

@@ -1,14 +1,13 @@
 import React from 'react';
 
 // styles
-import './buttonIcon.scss';
+import './buttonIcon.style.scss';
 
-// carbon core
-import Button from 'carbon-components-react/lib/components/Button';
-
-function ButtonIcon({ icon, onClick }) {
+function ButtonIcon({ icon: Component, onClick, color = "#393939" }) {
   return (
-    <Button size="small" kind="ghost" renderIcon={icon} onClick={onClick} />
+    <button type="button" onClick={onClick}>
+      <Component fill={color} />
+    </button>
   );
 }
 

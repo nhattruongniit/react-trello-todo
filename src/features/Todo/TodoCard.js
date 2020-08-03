@@ -11,12 +11,13 @@ import Edit32 from '@carbon/icons-react/lib/edit/32';
 
 // components
 import ButtonIcon from 'components/atoms/ButtonIcon';
+import Avatar from 'components/atoms/Avatar';
 import TodoForm from './TodoForm';
 
 // redux
 import { removeCard, editCard } from './redux/todo.reducer';
 
-const TodoCard = ({ cardId, title, listId, index }) => {
+const TodoCard = ({ cardId, title, listId, member, index }) => {
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
   const [cardText, setCardText] = useState(title);
@@ -57,6 +58,11 @@ const TodoCard = ({ cardId, title, listId, index }) => {
         <ButtonIcon icon={TrashCan32} onClick={handleRemoveCard} />
       </div>
       <div className="todoCard__title">{title}</div>
+      <div className="todoCard__member">
+        {member.length > 0 && member.map((mem, idx) => (
+          <Avatar key={idx} src={mem} />
+        ))}
+      </div>
     </Tile>
   );
 
