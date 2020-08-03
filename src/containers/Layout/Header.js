@@ -1,6 +1,9 @@
 import React from 'react';
 
-function LayoutHeader() {
+// style
+import './header.style.scss';
+
+function Header() {
   return (
     <div className="header__container">
       <div className="header__logo" />
@@ -15,4 +18,4 @@ function LayoutHeader() {
   );
 }
 
-export default LayoutHeader;
+export default Header;

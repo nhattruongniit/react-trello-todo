@@ -11,8 +11,21 @@
 
 ### UI COMPONENT
 
-- reactstrap
+- react carbon design
 
 ### TOOLS
 
 - prettier
+
+## Scripts
+
+```bash
+# install app's dependencies
+$ npm install
+
+# dev server localhost:3000 // use environment variable in .env.development
+$ npm start
+
+# build for production // use environment variable in .env.production
+$ npm run build
+```

@@ -1,66 +1,64 @@
 import React, { useCallback } from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { useSelector, useDispatch } from 'react-redux';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
-import {
-  Card,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  Col,
-  Row,
-} from 'reactstrap';
+// components
+import TodoList from './TodoList';
+import TodoCreate from './TodoCreate';
+
+// selectors
+import { getColumns, getLists, getCards } from './selectors';
 
 function Todo() {
+  const columnsSelector = useSelector(getColumns);
+  const listsSelector = useSelector(getLists);
+  const cardsSelector = useSelector(getCards);
+
   const onDragEnd = useCallback(() => {
     // the only one that is required
   }, []);
 
+  console.log(columnsSelector);
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable droppableId="droppable-1">
-        {(provided, snapshot) => (
-          <div ref={provided.innerRef} {...provided.droppableProps}>
-            <Draggable draggableId="draggable-1" index={0}>
-              {(provided) => (
-                <div
-                  ref={provided.innerRef}
-                  {...provided.draggableProps}
-                  {...provided.dragHandleProps}
-                >
-                  <Row>
-                    <Col sm="3">
-                      <Card>
-                        <CardBody>
-                          <CardTitle>Card title</CardTitle>
-                          <CardSubtitle>Card subtitle</CardSubtitle>
-                          <CardText>
-                            Some quick example text to build on the card title
-                            and make up the bulk of the card's content.
-                          </CardText>
-                        </CardBody>
-                      </Card>
-                    </Col>
-                  </Row>
+    <div className="todo">
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="all-lists" direction="horizontal" type="LIST">
+          {(provided) => {
+            return (
+              <div
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+                className="todo__container"
+              >
+                {columnsSelector.length > 0 ? (
+                  <>
+                    {columnsSelector.map((item, index) => {
+                      const lists = listsSelector[item];
+                      const cards = lists.cards.map(
+                        (card) => cardsSelector[card],
+                      );
+                      return (
+                        <TodoList
+                          key={lists.id}
+                          listId={lists.id}
+                          title={lists.title}
+                          cards={cards}
+                          index={index}
+                        />
+                      );
+                    })}
+                  </>
+                ) : null}
+                {provided.placeholder}
+                <div className="todo__button">
+                  <TodoCreate isLists />
                 </div>
-              )}
-            </Draggable>
-            <Draggable draggableId="draggable-2" index={1}>
-              {(provided, snapshot) => (
-                <div
-                  ref={provided.innerRef}
-                  {...provided.draggableProps}
-                  {...provided.dragHandleProps}
-                >
-                  <h4>My draggable 1</h4>
-                </div>
-              )}
-            </Draggable>
-            {provided.placeholder}
-          </div>
-        )}
-      </Droppable>
-    </DragDropContext>
+              </div>
+            );
+          }}
+        </Droppable>
+      </DragDropContext>
+    </div>
   );
 }
 

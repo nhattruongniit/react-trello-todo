@@ -10,8 +10,8 @@ import rootReducers from 'rootReducers';
 import App from './App';
 
 // styles
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css';
+import 'carbon-components/scss/globals/scss/styles.scss';
+import './index.scss';
 
 // config redux
 const composeEnhancers =
