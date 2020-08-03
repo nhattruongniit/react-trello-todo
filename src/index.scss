@@ -10,6 +10,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 code {
@@ -17,15 +18,33 @@ code {
     monospace;
 }
 
+.bx--form-item {
+  max-width: 331px;
+}
+
 /* todo */
 .todo {
-  margin: 10px 0 0 10px;
+  overflow-x: scroll;
+  width: 100%;
+  height: calc(100vh - 50px);
+  padding: 10px;
+  position: relative;
 }
+
 .todo__container {
   height: 100%;
   display: flex;
   align-items: flex-start;
   flex-direction: row;
+  white-space: nowrap;
+
+  position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 0px;
+    user-select: none;
+    overflow-x: auto;
 }
 
 /* todoList */
@@ -33,11 +52,15 @@ code {
   background-color: #dfe3e6;
   border-radius: 3px;
   min-width: 300px;
-  max-width: 300;
+  max-width: 300px;
   padding: 5px;
   margin: 0 8px 0 0;
   display: flex;
   flex-direction: column;
+}
+
+.todoList__content {
+  min-height: 10px;
 }
 
 .todoList__head {
@@ -57,6 +80,7 @@ code {
 
 /* todoCard */
 .todoCard {
+  white-space: pre-wrap;
   max-width: 331px;
   min-height: 75px;
   border-radius: 5px;
@@ -80,6 +104,10 @@ code {
   display: flex;
   position: absolute;
   flex-direction: column;
+}
+
+.todoCard__title {
+  width: 92%;
 }
 
 /* todoCard */

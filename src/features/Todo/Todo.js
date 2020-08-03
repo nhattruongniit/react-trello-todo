@@ -6,19 +6,32 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import TodoList from './TodoList';
 import TodoCreate from './TodoCreate';
 
+// redux
+import { onDragEndList, onDragEndCard } from './redux/todo.reducer';
+
 // selectors
-import { getColumns, getLists, getCards } from './selectors';
+import { getColumns, getLists, getCards  } from './selectors';
 
 function Todo() {
+  const dispatch = useDispatch();
   const columnsSelector = useSelector(getColumns);
   const listsSelector = useSelector(getLists);
   const cardsSelector = useSelector(getCards);
 
-  const onDragEnd = useCallback(() => {
-    // the only one that is required
+  const onDragEnd = useCallback((result) => {
+    const { type } = result;
+
+    if (type === 'LIST') {
+      dispatch(onDragEndList(result));
+      return false;
+    }
+
+    if (type === 'CARD') {
+      dispatch(onDragEndCard(result));
+      return false;
+    }
   }, []);
 
-  console.log(columnsSelector);
   return (
     <div className="todo">
       <DragDropContext onDragEnd={onDragEnd}>
@@ -50,9 +63,7 @@ function Todo() {
                   </>
                 ) : null}
                 {provided.placeholder}
-                <div className="todo__button">
-                  <TodoCreate isLists />
-                </div>
+                <TodoCreate isLists />
               </div>
             );
           }}

@@ -12,7 +12,7 @@ import Add32 from '@carbon/icons-react/lib/add/32';
 import TodoFrom from './TodoForm';
 
 // actions
-import { addList } from './redux/todo.reducer';
+import { addList, addCard } from './redux/todo.reducer';
 
 const TodoCreate = ({ isLists, listId }) => {
   const dispatch = useDispatch();
@@ -53,14 +53,14 @@ const TodoCreate = ({ isLists, listId }) => {
   const handleAddCard = () => {
     if (title === '') return;
 
-    // const id = `card-${uuidv4()}`;
-    // const newCards = {
-    //   id,
-    //   list: listId,
-    //   text: title,
-    // };
-    // dispatch(addCard(listId, newCards));
-    // setTitle('');
+    const id = `card-${uuidv4()}`;
+    const newCards = {
+      id,
+      list: listId,
+      title
+    };
+    dispatch(addCard(listId, newCards));
+    setTitle('');
   };
 
   return (

@@ -14,11 +14,12 @@ import ButtonIcon from 'components/atoms/ButtonIcon';
 import TodoForm from './TodoForm';
 
 // redux
+import { removeCard, editCard } from './redux/todo.reducer';
 
-const TodoCard = ({ cardId, text, listId, index }) => {
+const TodoCard = ({ cardId, title, listId, index }) => {
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
-  const [cardText, setCardText] = useState(text);
+  const [cardText, setCardText] = useState(title);
 
   const handleCloseForm = () => {
     setIsEditing(false);
@@ -26,7 +27,7 @@ const TodoCard = ({ cardId, text, listId, index }) => {
 
   const handleEditCard = () => {
     console.log('handleFinishEdit: ', cardText);
-    // dispatch(editCard(cardId, cardText));
+    dispatch(editCard(cardId, cardText));
   };
 
   const onChange = (e) => {
@@ -34,7 +35,7 @@ const TodoCard = ({ cardId, text, listId, index }) => {
   };
 
   const handleRemoveCard = () => {
-    // dispatch(removeCard(listId, cardId));
+    dispatch(removeCard(listId, cardId));
   };
 
   const renderTextarea = () => (
@@ -52,10 +53,10 @@ const TodoCard = ({ cardId, text, listId, index }) => {
   const renderCard = () => (
     <Tile className="todoCard">
       <div className="todoCard__button">
-        <ButtonIcon icon={Edit32} />
-        <ButtonIcon icon={TrashCan32} />
+        <ButtonIcon icon={Edit32} onClick={() => setIsEditing(true)} />
+        <ButtonIcon icon={TrashCan32} onClick={handleRemoveCard} />
       </div>
-      <div>{text}</div>
+      <div className="todoCard__title">{title}</div>
     </Tile>
   );
 

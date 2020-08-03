@@ -13,7 +13,11 @@ import TrashCan32 from '@carbon/icons-react/lib/trash-can/32';
 import TodoCard from './TodoCard';
 import TodoCreate from './TodoCreate';
 
+// redux
+import { changeTitleList, removeList } from './redux/todo.reducer';
+
 function TodoList({ title, cards, listId, index }) {
+  const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
   const [listTitle, setListTitle] = useState(title);
 
@@ -22,10 +26,13 @@ function TodoList({ title, cards, listId, index }) {
   };
 
   const handleEditTitleList = () => {
+    dispatch(changeTitleList(listId, listTitle));
     setIsEditing(false);
   };
 
-  const handleDelete = () => {};
+  const handleDelete = () => {
+    dispatch(removeList(listId));
+  };
 
   return (
     <Draggable draggableId={String(listId)} index={index}>
@@ -61,20 +68,21 @@ function TodoList({ title, cards, listId, index }) {
                       >
                         <div>{title}</div>
                       </div>
-                      <ButtonIcon icon={TrashCan32} />
+                      <ButtonIcon icon={TrashCan32} onClick={handleDelete} />
                     </div>
                   )}
                 </div>
                 <div
                   {...providedDrop.droppableProps}
                   ref={providedDrop.innerRef}
+                  className="todoList__content"
                 >
                   {cards.map((card, idx) => {
                     return (
                       <TodoCard
                         key={card.id}
                         cardId={card.id}
-                        text={card.title}
+                        title={card.title}
                         index={idx}
                         listId={listId}
                       />
