@@ -121,6 +121,9 @@ code {
   img {
     width: 28px;
     height: 28px;
+    & + img {
+      margin-left: 7px;
+    }
   }
 }
 

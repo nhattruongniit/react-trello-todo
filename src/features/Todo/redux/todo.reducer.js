@@ -18,7 +18,10 @@ export const changeTitleList = (listId, title) => ({
   payload: { listId, title },
 });
 
-export const removeList = (listId) => ({ type: REMOVE_LIST, payload: { listId } });
+export const removeList = (listId) => ({
+  type: REMOVE_LIST,
+  payload: { listId },
+});
 
 export const addCard = (listId, card) => ({
   type: ADD_CARD,
@@ -60,30 +63,26 @@ const initialState = {
     'card-1-1': {
       id: 'card-1-1',
       list: 'list-1',
-      title: 'learn javascriptlearn ',
-      member: [
-        './assets/images/avatar.png',
-        './assets/images/avatar2.jpeg',
-        './assets/images/avatar3.jpg'
-      ]
+      title: 'javascript ',
+      member: ['./assets/images/avatar2.jpeg', './assets/images/avatar3.jpg'],
     },
     'card-1-2': {
       id: 'card-1-2',
       list: 'list-1',
-      title: 'learn react',
-      member: []
+      title: 'react',
+      member: ['./assets/images/avatar.png'],
     },
     'card-2-1': {
       id: 'card-2-1',
       list: 'list-2',
-      title: 'learn javascript',
-      member: []
+      title: 'angular',
+      member: ['./assets/images/avatar4.jpg', './assets/images/avatar5.jpg'],
     },
     'card-2-2': {
       id: 'card-2-2',
       list: 'list-2',
-      title: 'learn graphQL',
-      member: []
+      title: 'vue',
+      member: ['./assets/images/avatar6.jpg', './assets/images/avatar7.jpg'],
     },
   },
   columns: ['list-1', 'list-2'],
@@ -201,7 +200,10 @@ const reducers = (state = initialState, { type, payload }) => {
         const droppedIdStart = source.droppableId;
         const lists = state.lists[droppedIdStart];
         const newCards = [...lists.cards];
-        [newCards[source.index], newCards[destination.index]] =  [newCards[destination.index], newCards[source.index]]
+        [newCards[source.index], newCards[destination.index]] = [
+          newCards[destination.index],
+          newCards[source.index],
+        ];
 
         return {
           ...state,
