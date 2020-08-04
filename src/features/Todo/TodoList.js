@@ -42,10 +42,6 @@ function TodoList({ title, cards, listId, index }) {
           {...provided.dragHandleProps}
           ref={provided.innerRef}
           className="todoList"
-          style={{
-            height: cards.length > 6 ? '100%' : 'auto',
-            ...provided.draggableProps.style,
-          }}
         >
           <Droppable droppableId={String(listId)} type="CARD">
             {(providedDrop) => (
