@@ -25,7 +25,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write .",
+    "lint": "eslint --ext .js,.jsx ./src",
+    "lint:fix": "eslint --fix --ext .js,.jsx ./src",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -45,5 +50,13 @@
   "devDependencies": {
     "@types/carbon__icons-react": "^10.14.0",
     "prettier": "^2.0.5"
+  },
+  "lint-staged": {
+    "*.js": "eslint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && pretty-quick --staged"
+    }
   }
 }
