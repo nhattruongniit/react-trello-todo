@@ -1,24 +1,27 @@
 /* TYPES */
-const ADD_LIST = 'TRELLO/ADD_LIST';
-const CHANGE_TITLE_LIST = 'TRELLO/CHANGE_TITLE_LIST';
-const REMOVE_LIST = 'TRELLO/REMOVE_LIST';
+const ADD_LIST = 'TRELLO/ADD_LIST'
+const CHANGE_TITLE_LIST = 'TRELLO/CHANGE_TITLE_LIST'
+const REMOVE_LIST = 'TRELLO/REMOVE_LIST'
 
-const ADD_CARD = 'TRELLO/ADD_CARD';
-const REMOVE_CARD = 'TRELLO/REMOVE_CARD';
-const EDIT_CARD = 'TRELLO/EDIT_CARD';
+const ADD_CARD = 'TRELLO/ADD_CARD'
+const REMOVE_CARD = 'TRELLO/REMOVE_CARD'
+const EDIT_CARD = 'TRELLO/EDIT_CARD'
 
-const DRAG_END_LIST = 'TRELLO/DRAG_END_LIST';
-const DRAG_END_CARD = 'TRELLO/DRAG_END_CARD';
+const DRAG_END_LIST = 'TRELLO/DRAG_END_LIST'
+const DRAG_END_CARD = 'TRELLO/DRAG_END_CARD'
 
 // actions
-export const addList = (payload) => ({ type: ADD_LIST, payload });
+export const addList = (payload) => ({ type: ADD_LIST, payload })
 
 export const changeTitleList = (listId, title) => ({
   type: CHANGE_TITLE_LIST,
   payload: { listId, title },
-});
+})
 
-export const removeList = (listId) => ({ type: REMOVE_LIST, payload: { listId } });
+export const removeList = (listId) => ({
+  type: REMOVE_LIST,
+  payload: { listId },
+})
 
 export const addCard = (listId, card) => ({
   type: ADD_CARD,
@@ -26,21 +29,21 @@ export const addCard = (listId, card) => ({
     listId,
     card,
   },
-});
+})
 
 export const removeCard = (listId, cardId) => ({
   type: REMOVE_CARD,
   payload: { listId, cardId },
-});
+})
 
 export const editCard = (cardId, cardText) => ({
   type: EDIT_CARD,
   payload: { cardId, cardText },
-});
+})
 
-export const onDragEndList = (payload) => ({ type: DRAG_END_LIST, payload });
+export const onDragEndList = (payload) => ({ type: DRAG_END_LIST, payload })
 
-export const onDragEndCard = (payload) => ({ type: DRAG_END_CARD, payload });
+export const onDragEndCard = (payload) => ({ type: DRAG_END_CARD, payload })
 
 // reducers
 const initialState = {
@@ -60,97 +63,93 @@ const initialState = {
     'card-1-1': {
       id: 'card-1-1',
       list: 'list-1',
-      title: 'learn javascriptlearn ',
-      member: [
-        './assets/images/avatar.png',
-        './assets/images/avatar2.jpeg',
-        './assets/images/avatar3.jpg'
-      ]
+      title: 'javascript ',
+      member: ['./assets/images/avatar2.jpeg', './assets/images/avatar3.jpg'],
     },
     'card-1-2': {
       id: 'card-1-2',
       list: 'list-1',
-      title: 'learn react',
-      member: []
+      title: 'react',
+      member: ['./assets/images/avatar.png'],
     },
     'card-2-1': {
       id: 'card-2-1',
       list: 'list-2',
-      title: 'learn javascript',
-      member: []
+      title: 'angular',
+      member: ['./assets/images/avatar4.jpg', './assets/images/avatar5.jpg'],
     },
     'card-2-2': {
       id: 'card-2-2',
       list: 'list-2',
-      title: 'learn graphQL',
-      member: []
+      title: 'vue',
+      member: ['./assets/images/avatar6.jpg', './assets/images/avatar7.jpg'],
     },
   },
   columns: ['list-1', 'list-2'],
-};
+}
 
 const reducers = (state = initialState, { type, payload }) => {
   switch (type) {
     case ADD_LIST: {
-      const { id, title, cards } = payload;
+      const { id, title, cards } = payload
       const newLists = {
         id,
         title,
         cards,
-      };
+      }
 
       return {
         ...state,
         columns: [...state.columns, id],
         lists: { ...state.lists, [id]: newLists },
-      };
+      }
     }
 
     case CHANGE_TITLE_LIST: {
-      const { listId, title } = payload;
-      const newLists = state.lists[listId];
-      newLists.title = title;
+      const { listId, title } = payload
+      const newLists = state.lists[listId]
+      newLists.title = title
 
       return {
         ...state,
         lists: { ...state.lists, [listId]: newLists },
-      };
+      }
     }
 
     case REMOVE_LIST: {
-      const { listId } = payload;
-      const newLists = state.lists;
-      delete newLists[listId];
-      const newColumns = state.columns.filter((column) => column !== listId);
+      const { listId } = payload
+      const newLists = state.lists
+      delete newLists[listId]
+      const newColumns = state.columns.filter((column) => column !== listId)
 
       return {
         ...state,
         columns: newColumns,
         lists: newLists,
-      };
+      }
     }
 
     case ADD_CARD: {
-      const { listId, card } = payload;
+      const { listId, card } = payload
       const newLists = {
         ...state.lists,
         [listId]: {
           ...state.lists[listId],
           cards: [...state.lists[listId].cards, card.id],
         },
-      };
+      }
 
       return {
         ...state,
         lists: newLists,
         cards: { ...state.cards, [card.id]: card },
-      };
+      }
     }
 
     case REMOVE_CARD: {
-      const { listId, cardId } = payload;
-      const newCards = state.cards;
-      delete newCards[cardId];
+      const { listId, cardId } = payload
+      const newCards = state.cards
+      delete newCards[cardId]
 
       const newLists = {
         ...state.lists,
@@ -158,50 +157,53 @@ const reducers = (state = initialState, { type, payload }) => {
           ...state.lists[listId],
           cards: state.lists[listId].cards.filter((card) => card !== cardId),
         },
-      };
+      }
 
       return {
         ...state,
         lists: newLists,
         cards: newCards,
-      };
+      }
     }
 
     case EDIT_CARD: {
-      const { cardId, cardText } = payload;
-      const newCards = state.cards[cardId];
-      newCards.title = cardText;
+      const { cardId, cardText } = payload
+      const newCards = state.cards[cardId]
+      newCards.title = cardText
 
       return {
         ...state,
         cards: { ...state.cards, [cardId]: newCards },
-      };
+      }
     }
 
     case DRAG_END_LIST: {
-      const { destination, source } = payload;
-      if (destination === null) return state;
+      const { destination, source } = payload
+      if (destination === null) return state
 
-      const newColumns = [...state.columns];
-      const listSpliced = newColumns.splice(source.index, 1)[0];
-      newColumns.splice(destination.index, 0, listSpliced);
+      const newColumns = [...state.columns]
+      const listSpliced = newColumns.splice(source.index, 1)[0]
+      newColumns.splice(destination.index, 0, listSpliced)
 
       return {
         ...state,
         columns: newColumns,
-      };
+      }
     }
 
     case DRAG_END_CARD: {
-      const { destination, source } = payload;
-      if (destination === null) return state;
+      const { destination, source } = payload
+      if (destination === null) return state
 
       // in the same list
       if (source.droppableId === destination.droppableId) {
-        const droppedIdStart = source.droppableId;
-        const lists = state.lists[droppedIdStart];
-        const newCards = [...lists.cards];
-        [newCards[source.index], newCards[destination.index]] =  [newCards[destination.index], newCards[source.index]]
+        const droppedIdStart = source.droppableId
+        const lists = state.lists[droppedIdStart]
+        const newCards = [...lists.cards]
+        ;[newCards[source.index], newCards[destination.index]] = [
+          newCards[destination.index],
+          newCards[source.index],
+        ]
 
         return {
           ...state,
@@ -212,22 +214,22 @@ const reducers = (state = initialState, { type, payload }) => {
               cards: newCards,
             },
           },
-        };
+        }
       }
 
       // other list
       if (source.droppableId !== destination.droppableId) {
-        const droppedIdStart = source.droppableId;
-        const droppedIdEnd = destination.droppableId;
-        const listStart = state.lists[droppedIdStart];
-        const listEnd = state.lists[droppedIdEnd];
-        const newCardsStart = [...listStart.cards];
-        const newCardsEnd = [...listEnd.cards];
+        const droppedIdStart = source.droppableId
+        const droppedIdEnd = destination.droppableId
+        const listStart = state.lists[droppedIdStart]
+        const listEnd = state.lists[droppedIdEnd]
+        const newCardsStart = [...listStart.cards]
+        const newCardsEnd = [...listEnd.cards]
 
         // cut card in list start
-        const cardSpliced = newCardsStart.splice(source.index, 1)[0];
+        const cardSpliced = newCardsStart.splice(source.index, 1)[0]
         // add card spliced in list end
-        newCardsEnd.splice(destination.index, 0, cardSpliced);
+        newCardsEnd.splice(destination.index, 0, cardSpliced)
 
         return {
           ...state,
@@ -242,17 +244,17 @@ const reducers = (state = initialState, { type, payload }) => {
               cards: newCardsEnd,
             },
           },
-        };
+        }
       }
 
       return {
         ...state,
-      };
+      }
     }
 
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default reducers;
+export default reducers

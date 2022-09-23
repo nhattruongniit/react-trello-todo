@@ -35,8 +35,7 @@ export default {
     'card-1': {
       id: 'card-1',
       list: 'list-1',
-      text:
-        'learnreactlearnreactlearnreactlearnreactlearnreactlearnreactlearnreactlearnreactlearnreactlearnreactlearnreactlearnreactlearnreactlearnreactlearnreactlearnreactlearnreactlearnreact',
+      text: 'learnreactlearnreactlearnreactlearnreactlearnreactlearnreactlearnreactlearnreactlearnreactlearnreactlearnreactlearnreactlearnreactlearnreactlearnreactlearnreactlearnreactlearnreact',
     },
     'card-2': {
       id: 'card-2',
@@ -80,4 +79,4 @@ export default {
     },
   },
   columns: ['list-1', 'list-2'],
-};
+}

@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
-import Todo from 'features/Todo';
-import Layout from 'containers/Layout/Layout';
+import Todo from 'features/Todo'
+import Layout from 'containers/Layout/Layout'
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
         <Todo />
       </Layout>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-import Header from './Header';
+import Header from './Header'
 
 function LayoutMain({ children }) {
   return (
@@ -10,7 +10,7 @@ function LayoutMain({ children }) {
       </header>
       <main>{children}</main>
     </div>
-  );
+  )
 }
 
-export default LayoutMain;
+export default LayoutMain

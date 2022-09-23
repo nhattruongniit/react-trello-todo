@@ -1,38 +1,38 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Droppable, Draggable } from 'react-beautiful-dnd';
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { Droppable, Draggable } from 'react-beautiful-dnd'
 
 // carbon core
-import TextInput from 'carbon-components-react/lib/components/TextInput';
-import ButtonIcon from 'components/atoms/ButtonIcon';
+import TextInput from 'carbon-components-react/lib/components/TextInput'
+import ButtonIcon from 'components/atoms/ButtonIcon'
 
 // carbon icon
-import TrashCan32 from '@carbon/icons-react/lib/trash-can/32';
+import TrashCan32 from '@carbon/icons-react/lib/trash-can/32'
 
 // components
-import TodoCard from './TodoCard';
-import TodoCreate from './TodoCreate';
+import TodoCard from './TodoCard'
+import TodoCreate from './TodoCreate'
 
 // redux
-import { changeTitleList, removeList } from './redux/todo.reducer';
+import { changeTitleList, removeList } from './redux/todo.reducer'
 
 function TodoList({ title, cards, listId, index }) {
-  const dispatch = useDispatch();
-  const [isEditing, setIsEditing] = useState(false);
-  const [listTitle, setListTitle] = useState(title);
+  const dispatch = useDispatch()
+  const [isEditing, setIsEditing] = useState(false)
+  const [listTitle, setListTitle] = useState(title)
 
   const handleFocus = (e) => {
-    e.target.select();
-  };
+    e.target.select()
+  }
 
   const handleEditTitleList = () => {
-    dispatch(changeTitleList(listId, listTitle));
-    setIsEditing(false);
-  };
+    dispatch(changeTitleList(listId, listTitle))
+    setIsEditing(false)
+  }
 
   const handleRemove = () => {
-    dispatch(removeList(listId));
-  };
+    dispatch(removeList(listId))
+  }
 
   return (
     <Draggable draggableId={String(listId)} index={index}>
@@ -42,10 +42,6 @@ function TodoList({ title, cards, listId, index }) {
           {...provided.dragHandleProps}
           ref={provided.innerRef}
           className="todoList"
-          style={{
-            height: cards.length > 6 ? '100%' : 'auto',
-            ...provided.draggableProps.style,
-          }}
         >
           <Droppable droppableId={String(listId)} type="CARD">
             {(providedDrop) => (
@@ -87,7 +83,7 @@ function TodoList({ title, cards, listId, index }) {
                         listId={listId}
                         member={card.member}
                       />
-                    );
+                    )
                   })}
                   {providedDrop.placeholder}
                 </div>
@@ -98,7 +94,7 @@ function TodoList({ title, cards, listId, index }) {
         </div>
       )}
     </Draggable>
-  );
+  )
 }
 
-export default TodoList;
+export default TodoList

@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 
 // style
-import './header.style.scss';
+import './header.style.scss'
 
 // components
-import Avatar from 'components/atoms/Avatar';
+import Avatar from 'components/atoms/Avatar'
 
 function Header() {
   return (
@@ -16,7 +16,7 @@ function Header() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Header;
+export default Header

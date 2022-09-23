@@ -1,13 +1,13 @@
-import React, { memo } from 'react';
+import React, { memo } from 'react'
 
 // carbon core
-import { TextArea } from 'carbon-components-react';
+import { TextArea } from 'carbon-components-react'
 
 // carbon icon
-import Close32 from '@carbon/icons-react/lib/close/32';
+import Close32 from '@carbon/icons-react/lib/close/32'
 
 // components
-import ButtonIcon from 'components/atoms/ButtonIcon';
+import ButtonIcon from 'components/atoms/ButtonIcon'
 
 function TodoCard({ text, placeholder, onChange, handleCloseForm, children }) {
   return (
@@ -27,7 +27,7 @@ function TodoCard({ text, placeholder, onChange, handleCloseForm, children }) {
         <ButtonIcon icon={Close32} onClick={handleCloseForm} />
       </div>
     </div>
-  );
+  )
 }
 
-export default memo(TodoCard);
+export default memo(TodoCard)
