@@ -1,3 +1,5 @@
+import { mockData } from 'mocks/data'
+
 /* TYPES */
 const ADD_LIST = 'TRELLO/ADD_LIST'
 const CHANGE_TITLE_LIST = 'TRELLO/CHANGE_TITLE_LIST'
@@ -47,45 +49,7 @@ export const onDragEndCard = (payload) => ({ type: DRAG_END_CARD, payload })
 
 // reducers
 const initialState = {
-  lists: {
-    'list-1': {
-      id: 'list-1',
-      title: 'list 1',
-      cards: ['card-1-1', 'card-1-2'],
-    },
-    'list-2': {
-      id: 'list-2',
-      title: 'list 2',
-      cards: ['card-2-1', 'card-2-2'],
-    },
-  },
-  cards: {
-    'card-1-1': {
-      id: 'card-1-1',
-      list: 'list-1',
-      title: 'javascript ',
-      member: ['./assets/images/avatar2.jpeg', './assets/images/avatar3.jpg'],
-    },
-    'card-1-2': {
-      id: 'card-1-2',
-      list: 'list-1',
-      title: 'react',
-      member: ['./assets/images/avatar.png'],
-    },
-    'card-2-1': {
-      id: 'card-2-1',
-      list: 'list-2',
-      title: 'angular',
-      member: ['./assets/images/avatar4.jpg', './assets/images/avatar5.jpg'],
-    },
-    'card-2-2': {
-      id: 'card-2-2',
-      list: 'list-2',
-      title: 'vue',
-      member: ['./assets/images/avatar6.jpg', './assets/images/avatar7.jpg'],
-    },
-  },
-  columns: ['list-1', 'list-2'],
+  ...mockData,
 }
 
 const reducers = (state = initialState, { type, payload }) => {

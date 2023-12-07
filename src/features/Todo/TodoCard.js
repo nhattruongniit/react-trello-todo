@@ -2,20 +2,12 @@ import React, { useState, memo } from 'react'
 import { useDispatch } from 'react-redux'
 import { Draggable } from 'react-beautiful-dnd'
 
-// carbon core
-import { Tile, Button } from 'carbon-components-react'
-
-// carbon icon
-import TrashCan32 from '@carbon/icons-react/lib/trash-can/32'
-import Edit32 from '@carbon/icons-react/lib/edit/32'
-
 // components
-import ButtonIcon from 'components/atoms/ButtonIcon'
-import Avatar from 'components/atoms/Avatar'
 import TodoForm from './TodoForm'
+import ButtonIcon from 'components/ButtonIcon'
 
 // redux
-import { removeCard, editCard } from './redux/todo.reducer'
+import { removeCard, editCard } from '../../redux/todo.reducer'
 
 const TodoCard = ({ cardId, title, listId, member, index }) => {
   const dispatch = useDispatch()
@@ -45,24 +37,28 @@ const TodoCard = ({ cardId, title, listId, member, index }) => {
       onChange={onChange}
       handleCloseForm={handleCloseForm}
     >
-      <Button size="small" onMouseDown={handleEditCard}>
+      <button
+        type="button"
+        onMouseDown={handleEditCard}
+        className="button_primary"
+      >
         Save
-      </Button>
+      </button>
     </TodoForm>
   )
 
   const renderCard = () => (
-    <Tile className="todoCard">
+    <div className="todoCard">
       <div className="todoCard__button">
-        <ButtonIcon icon={Edit32} onClick={() => setIsEditing(true)} />
-        <ButtonIcon icon={TrashCan32} onClick={handleRemoveCard} />
+        <ButtonIcon
+          icon="material-symbols:delete-outline"
+          color="#fff"
+          width={16}
+          onClick={handleRemoveCard}
+        />
       </div>
       <div className="todoCard__title">{title}</div>
-      <div className="todoCard__member">
-        {member.length > 0 &&
-          member.map((mem, idx) => <Avatar key={idx} src={mem} />)}
-      </div>
-    </Tile>
+    </div>
   )
 
   return (

@@ -8,10 +8,7 @@
 - react-beautiful-dnd
 - redux
 - redux-thunk
-
-### UI COMPONENT
-
-- react carbon design
+- https://icon-sets.iconify.design/ic/outline-restore-from-trash/
 
 ### TOOLS
 

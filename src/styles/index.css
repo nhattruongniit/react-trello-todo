@@ -1,0 +1,264 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans,
+    Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #b6c2cf;
+  font-size: 14px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+main {
+  background-color: rgb(81, 152, 57);
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background: #00000026;
+}
+
+header {
+  max-height: 48px;
+  overflow: hidden;
+  background-color: #161a1d;
+  padding: 8px;
+}
+
+.header_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header_logo {
+  width: 75px;
+  padding: 8px 0;
+}
+
+.header_avatar {
+  height: 24px;
+  width: 24px;
+  line-height: 24px;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+button {
+  outline: 0;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.todo {
+  height: calc(100vh - 47px);
+  position: relative;
+  overflow-y: hidden;
+  padding: 0 10px;
+}
+
+.todo__container {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  white-space: nowrap;
+  height: 100%;
+  padding: 10px 0;
+}
+
+/* start todo list */
+
+.todoList {
+  background-color: #101204;
+  border-radius: 12px;
+  min-width: 300px;
+  max-width: 300px;
+  max-height: calc(100% - 30px);
+  padding: 5px;
+  margin: 0 8px 0 0;
+  display: flex;
+  flex-direction: column;
+  word-break: break-all;
+}
+
+.todoList__content {
+  flex: 1 1 auto;
+  padding: 0 5px;
+  min-height: 10px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin-bottom: 0;
+}
+
+.todoList__head {
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todoList__head__title {
+  width: 100%;
+  width: 100%;
+  padding: 6px 8px 6px 12px;
+  word-break: break-all;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  height: 28px;
+}
+
+.todoList__input {
+  border-radius: 3px;
+  border: 0;
+  height: 16px;
+  padding: 6px 8px 6px 12px;
+  background-color: transparent;
+}
+/* end todo list */
+
+/* start todo cart */
+
+.todoCard {
+  display: flow-root;
+  position: relative;
+  padding: 8px 12px 4px;
+  min-height: 24px;
+  z-index: 10;
+  background-color: #22272b;
+  border-radius: 8px;
+}
+
+.todoCard:hover .todoCard__button {
+  display: flex;
+}
+
+.todoCard__container {
+  margin-bottom: 10px;
+}
+
+.todoCard__button {
+  right: 5px;
+  top: 5px;
+  display: none;
+  position: absolute;
+  flex-direction: column;
+}
+
+.todoCard__button button {
+  padding: 5px;
+}
+
+.todoCard__title {
+  width: 92%;
+  min-height: 50px;
+  line-height: 18px;
+}
+
+.todoCard__member {
+  width: 100%;
+  text-align: right;
+}
+
+.todoCard__member img {
+  width: 28px;
+  height: 28px;
+}
+
+/* end todo cart */
+
+/* todoCreate */
+.todoCreate__button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 260px;
+  border-radius: 12px;
+  padding: 6px;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.todoCreate__button button {
+  position: relative;
+  top: 2px;
+}
+
+.todo_textarea {
+  width: 277px;
+  background-color: #22272b;
+  box-shadow: 0px 1px 1px #091e4240, 0px 0px 1px #091e424f;
+  border-radius: 8px;
+  border: none;
+  height: 54px;
+  height: auto;
+  margin: 0;
+  max-height: 162px;
+  min-height: 54px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  overflow-y: hidden;
+  resize: none;
+  padding: 6px;
+  color: #b6c2cf;
+  outline: none;
+  margin-bottom: 8px;
+}
+
+.todoForm {
+  width: 100%;
+}
+
+.button_list {
+  padding: 0 6px;
+}
+
+.button_primary {
+  background-color: #0c66e4;
+  box-shadow: none;
+  border: none;
+  color: #ffffff;
+  line-height: 20px;
+  font-weight: 400;
+  font-display: swap;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 6px 12px;
+  text-decoration: none;
+  white-space: normal;
+  box-shadow: none;
+  border: none;
+  font-weight: 500;
+}
+
+.todo_add_list {
+  padding: 6px;
+  background-color: #101204;
+  border-radius: 12px;
+}

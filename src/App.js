@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Todo from 'features/Todo'
-import Layout from 'containers/Layout/Layout'
+import Layout from 'components/Layout'
 
 function App() {
   return (

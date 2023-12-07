@@ -7,10 +7,10 @@ import TodoList from './TodoList'
 import TodoCreate from './TodoCreate'
 
 // redux
-import { onDragEndList, onDragEndCard } from './redux/todo.reducer'
+import { onDragEndList, onDragEndCard } from 'redux/todo.reducer'
 
 // selectors
-import { getColumns, getLists, getCards } from './selectors'
+import { getColumns, getLists, getCards } from 'redux/todo.selectors'
 
 function Todo() {
   const dispatch = useDispatch()
@@ -35,9 +35,9 @@ function Todo() {
   return (
     <div
       className="todo"
-      style={{
-        width: 340 * columnsSelector.length || 1,
-      }}
+      // style={{
+      //   width: 340 * columnsSelector.length || 1,
+      // }}
     >
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="all-lists" direction="horizontal" type="LIST">
@@ -68,7 +68,7 @@ function Todo() {
                   </>
                 ) : null}
                 {provided.placeholder}
-                <TodoCreate isLists />
+                <TodoCreate isLists className="todo_add_list" />
               </div>
             )
           }}

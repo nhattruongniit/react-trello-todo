@@ -2,19 +2,14 @@ import React, { memo, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
 
-// carbon core
-import { Button } from 'carbon-components-react'
-
-// carbon icon
-import Add32 from '@carbon/icons-react/lib/add/32'
-
 // components
 import TodoFrom from './TodoForm'
+import ButtonIcon from 'components/ButtonIcon'
 
 // actions
-import { addList, addCard } from './redux/todo.reducer'
+import { addList, addCard } from '../../redux/todo.reducer'
 
-const TodoCreate = ({ isLists, listId }) => {
+const TodoCreate = ({ isLists, listId, className }) => {
   const dispatch = useDispatch()
   const [title, setTitle] = useState('')
   const [openForm, setOpenForm] = useState(false)
@@ -65,28 +60,31 @@ const TodoCreate = ({ isLists, listId }) => {
   }
 
   return (
-    <>
+    <div className={className}>
       {openForm ? (
-        <TodoFrom
-          text={title}
-          placeholder={placeholder}
-          onChange={onChange}
-          handleCloseForm={handleCloseForm}
-        >
-          <Button
-            size="small"
-            onMouseDown={isLists ? handleAddList : handleAddCard}
+        <>
+          <TodoFrom
+            text={title}
+            placeholder={placeholder}
+            onChange={onChange}
+            handleCloseForm={handleCloseForm}
           >
-            Save
-          </Button>
-        </TodoFrom>
+            <button
+              type="button"
+              className="button_primary"
+              onMouseDown={isLists ? handleAddList : handleAddCard}
+            >
+              Save
+            </button>
+          </TodoFrom>
+        </>
       ) : (
         <div className="todoCreate__button" onClick={handleOpenForm}>
-          <Add32 />
-          {label}
+          <ButtonIcon icon="material-symbols:add" color="#fff" />
+          <span>{label}</span>
         </div>
       )}
-    </>
+    </div>
   )
 }
 
